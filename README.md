@@ -40,6 +40,31 @@ db.collection.bulkWrite([
 ])
 ```
 
+
+
+Update 
+
+- filtrating results to update
+```sql
+db.collection.update({"carrer.fee":{$lte:5}},{$set:{price:9.99 }})
+```
+
+- updateOne
+- updateMany
+until all values matching the conditon left
+```sql
+.updateMany({violations:{$gt:3}},{$set:{"Review":true}})
+```
+
+
+Remove
+
+- remove - outdated
+- deleteOne()
+- deleteMany()
+- findOneAndDelete()
+- bulkWrite()
+
 ### Queries
 
 ```sql
@@ -157,4 +182,49 @@ When we want to display values from keys
 .find().sort({name:1})
 .find().limit(5)
 .find().skip(5)
+```
+
+
+### Aggregation
+
+- combining and reporting 
+- like in sql: where, group by, order by
+
+```sql
+db.orders.aggregate([
+    {$match: {status: "A"}},
+    {$group: {_id:"$cust_id",total:{$sum: "$amount"}}},
+    {$sort: {total:-1}}
+]) 
+```
+
+
+### Distinct
+
+- for unrepeatble data
+```sql
+db.collection.distinct({"field_name"})
+```
+
+
+### FindAnd...
+
+- findOneAndReplace
+replacing existing document with new one, not updating 
+```sql
+db.scores.findOneAndReplace(
+    {"score":{$lt:20000}},
+    {"team":"Name","score":20000},
+    {sort:{"score":1}}
+)
+```
+
+- findOneAndUpdate
+updating specific records
+
+
+### Count
+counting elements in db or result
+```sql
+db.collection.count()
 ```
