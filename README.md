@@ -25,6 +25,7 @@ db.collection.insert()
     {item: "card",qty:15},
     {item: "stamps".qty:30}
 ]
+```
 - bulkWrite()
 ```sql
 [<operation1>,<operation2>],
@@ -63,11 +64,32 @@ Inside find method
 {$nor: [{field:{expression1}},field:{expression2}]}
 
 {field:{$not: {expression}}}
-``
+```
 
 ### Regex
 
 - Inside / /
 - started with ^char,^[set start-end]
+- ending with char$
 - every one character . 
 - every many charactes *
+
+```sql
+{field:{$regex: /pattern/,$options:''}}
+{field:{$regex: 'pattern',$options:''}}
+{field:{$regex: /pattern/''}}
+```
+
+options f.ex i - not case sensitive
+```sql
+{name: {$in:[/^acme/i]}}
+```
+
+
+### $type
+
+searching information about specific datatype
+
+```sql 
+.find({"data" : {$type:"array"}})
+```
