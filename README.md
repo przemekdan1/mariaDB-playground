@@ -40,6 +40,13 @@ db.collection.bulkWrite([
 ])
 ```
 
+### Queries
+
+```sql
+db.collecton.find({{query},,{projection}})
+```
+
+
 id field have special name _id, if not defined it will be generated
 
 ### Operators
@@ -92,4 +99,62 @@ searching information about specific datatype
 
 ```sql 
 .find({"data" : {$type:"array"}})
+```
+
+
+### Array operators
+
+- aviable operators: all,elemMatch, size
+
+- every value in tag is from list
+```sql
+{tags: {$all["ssl","security"]}}
+```
+- every constrains about fields from list
+```sql
+{results:{$elemMatch:{ $gte : 80,$lt : 85}}}
+```
+- field size, f.ex. is it an array
+```sql
+{field: {$size : 2}}
+```
+
+
+### Min/max
+
+- query results constraints
+```sql
+db.collecton.find({<query>}).max({field:<maxValue,field2:<maxValue>>}).min({field:<minValue,field2:<minValue>>})
+```
+
+```sql
+.min({age:20}).max({age:25})
+``` 
+
+
+### Projection
+
+```sql
+db.bios.find({"name.last": "Hopper"})
+db.bios.find({name: {first:"Youhiro",last:"Matsumato"}})
+```
+
+When we want to display values from keys
+```sql
+.find({},{name:1,contribs:1,_id:0})
+```
+
+
+### Date
+```sql
+{brth: {$gt: new Date('2000-09-28')}}
+```
+
+
+### Sort/limit/skip
+
+```sql
+.find().sort({name:1})
+.find().limit(5)
+.find().skip(5)
 ```
