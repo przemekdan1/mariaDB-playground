@@ -70,6 +70,9 @@ Remove
 ```sql
 db.collecton.find({{query},,{projection}})
 ```
+```sql
+db.collection.find({field:{$in:[cond1,cond1]}})
+```
 
 
 id field have special name _id, if not defined it will be generated
@@ -96,6 +99,7 @@ Inside find method
 {$nor: [{field:{expression1}},field:{expression2}]}
 
 {field:{$not: {expression}}}
+{field:{$exists:true}}
 ```
 
 ### Regex
