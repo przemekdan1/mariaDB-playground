@@ -37,3 +37,9 @@ db.klienci.find({eMail:/o2/},{_id:0,nrDowodu:1})
 
 db.pokoje.find({dostawka:/T/,"cenaZaDostawke.0.liczbaDostawek":1,"cenaZaDostawke.0.cenaZaDobe":{$gt:50,$lt:80}})
 
+db.pokoje.find({pietro:2}).limit(3)
+
+db.pokoje.find({pietro:2}).limit(3).skip(2)
+
+db.pokoje.find({cenaZaDobe:{$lte:200}},{_id:0,idPokoju:1,liczbaMiejsc:1,cenaZaDobe:1})
+

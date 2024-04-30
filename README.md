@@ -178,7 +178,10 @@ When we want to display values from keys
 ```sql
 {brth: {$gt: new Date('2000-09-28')}}
 ```
-
+For finding the exact date in queries
+```sql
+db.collection.find({dateField:ISODate("dateTtimeZ")})
+```
 
 ### Sort/limit/skip
 
@@ -207,7 +210,7 @@ db.orders.aggregate([
 
 - for unrepeatble data
 ```sql
-db.collection.distinct({"field_name"})
+db.collection.distinct("field_name")
 ```
 
 
