@@ -43,3 +43,21 @@ db.pokoje.find({pietro:2}).limit(3).skip(2)
 
 db.pokoje.find({cenaZaDobe:{$lte:200}},{_id:0,idPokoju:1,liczbaMiejsc:1,cenaZaDobe:1})
 
+db.pokoje.find({"cenaZaDostawke.1.cenaZaDobe":100})
+
+db.pokoje.find({"cenaZaDostawke.0.cenaZaDobe": {$gte:20,$lte:80}})
+
+db.pokoje.find({"cenaZaDostawke": {$type:"array"}}
+
+db.klienci.find({imie: {$in:[/Adam/i,/Tomasz/i]}}).count()
+
+db.zakwaterowanie.aggregate(
+    {$group:{_id:"$idKlienta",total:{$sum:"$koszt"}}},
+    {$sort:{_id:1}}
+)
+
+db.klienci.aggregate([
+    {$match: {imie: {$in:[/Adam/i,/Marta/i,/Beata/i]}}},
+    {$group: {_id:"$idKlienta",count:{$sum:1}}},
+    {$sort:{count:1}}
+])

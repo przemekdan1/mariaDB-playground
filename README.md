@@ -102,6 +102,15 @@ Inside find method
 {field:{$exists:true}}
 ```
 
+### Modulo, sum
+```sql
+db.collection.find({field:{$mod:[2,0]}})
+```
+
+```sql
+db.collection.find({$sum: "fieldName"})
+```
+
 ### Regex
 
 - Inside / /
@@ -153,11 +162,11 @@ searching information about specific datatype
 
 - query results constraints
 ```sql
-db.collecton.find({<query>}).max({field:<maxValue,field2:<maxValue>>}).min({field:<minValue,field2:<minValue>>})
+db.collecton.find({<query>}).max({field:<maxValue,field2:<maxValue>>}).min({field:<minValue,field2:<minValue>>}).hint({field1:1,field2:1})
 ```
 
 ```sql
-.min({age:20}).max({age:25})
+.min({age:20}).max({age:25}).hint({age:1})
 ``` 
 
 
@@ -178,9 +187,9 @@ When we want to display values from keys
 ```sql
 {brth: {$gt: new Date('2000-09-28')}}
 ```
-For finding the exact date in queries
+ISODate object - for finding the exact date or in some range, in queries
 ```sql
-db.collection.find({dateField:ISODate("dateTtimeZ")})
+db.collection.find({dateField:{$gte: ISODate("2024-01-01"), $lte: ISODate("2024-02-12")}})
 ```
 
 ### Sort/limit/skip
