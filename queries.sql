@@ -31,6 +31,7 @@ db.pokoje.find({dostawka:/T/,cenaZaDobe:{$gt:300}},{_id:0,idPokoju:1}).sort({cen
 db.klienci.find({$and:[{"adresZamieszkania.miejscowosc":/Warszawa/},{"adresZamieszkania.ulica":/Polna/}]})
 
 
+
 db.klienci.find({eMail:/^..[ap].*/})
 
 db.klienci.find({eMail:/o2/},{_id:0,nrDowodu:1})
@@ -43,11 +44,19 @@ db.pokoje.find({pietro:2}).limit(3).skip(2)
 
 db.pokoje.find({cenaZaDobe:{$lte:200}},{_id:0,idPokoju:1,liczbaMiejsc:1,cenaZaDobe:1})
 
-db.pokoje.find({"cenaZaDostawke.1.cenaZaDobe":100})
+db.klienci.find({idKlienta:{$gte: ISODate("2024-01-01"), $lte: ISODate("2024-02-12")}})
+
+db.pokoje.find({"cenaZaDostawke.1.cenaZaDobe":100}) 
 
 db.pokoje.find({"cenaZaDostawke.0.cenaZaDobe": {$gte:20,$lte:80}})
 
 db.pokoje.find({"cenaZaDostawke": {$type:"array"}}
+
+db.pokoje.find({liczbaMiejsc:{$mod:[2,0]}})
+
+db.pokoje.find().min({cenaZaDobe:400}).max({cenaZaDobe:1000}).hint({cenaZaDobe:1})
+
+
 
 db.klienci.find({imie: {$in:[/Adam/i,/Tomasz/i]}}).count()
 
