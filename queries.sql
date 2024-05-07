@@ -70,3 +70,76 @@ db.klienci.aggregate([
     {$group: {_id:"$idKlienta",count:{$sum:1}}},
     {$sort:{count:1}}
 ])
+
+db.klienci.insertOne(
+    {
+      "idKlienta": 100,
+      "nazwisko": "Oplski",
+      "imie": "Kamil",
+      "nrDowodu": "OP9900222",
+      "adresZamieszkania": {
+        "miejscowosc": "Opole",
+        "ulica": "Podkarpacka",
+        "nrDomu": 44,
+        "nrMieszkania": 678
+          }
+      }
+    
+)
+
+db.klienci.insertMany([
+  {
+    "idKlienta": 200,
+    "nazwisko": "Kaminski",
+    "imie": "Teodor",
+    "nrDowodu": "KT124546",
+    "adresZamieszkania": {
+      "miejscowosc": "Gdynia",
+      "ulica": "Katowicka",
+      "nrDomu": 89
+    }
+  },
+  {
+    "idKlienta": 201,
+    "nazwisko": "Tokarczuk",
+    "imie": "Eleonora",
+    "nrDowodu": "TE4434352"
+  }
+])
+
+db.klienci.updateOne({idKlienta:100},{$set:{"eMail":"opolK234@o3.pl"}})
+
+db.pokoje.updateMany({dostawka:"T",cenaZaDobe:{$gte:99,$lt:210}},{$set:{cenaZaDobe:2000}})
+
+db.klienci.findOneAndUpdate({eMail:/.com$/,komercyjny:{$exists:false}},{$set:{komercyjny:1}})
+
+db.klienci.findOneAndReplace({eMail:/.com$/,komercyjny:{$exists:false}},{komercyjny:1})
+
+db.klienci.deleteMany({eMail:{$exists:false}})
+
+db.kolekcja.insertOne({
+    "poleTekstowe": "tekst",
+    "liczby": [1,2,3],
+    "data": new Date("2024-05-07")
+})
+
+db.kolekcja.insertMany(
+{
+    "poleTekstowe": "tekst",
+    "liczby": [1,2,3],
+    "data": new Date("2024-05-07")
+},
+{
+    "poleTekstowe": "dasdas",
+    "liczby": [312,2,3],
+    "data": new Date("2024-05-06")
+},
+{
+    "poleTekstowe": "dsa",
+    "liczby": [0,0,0],
+    "data": new Date("2024-05-01")
+})
+
+db.kolekcja.updateMany({poleTekstowe:"dsa"},{$set:{"poleTekstowe":"fuuu"}})
+
+db.kolekcja.drop()

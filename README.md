@@ -19,11 +19,35 @@ db.collection.insert()
 ```
 
 - insertOne()
+```sql
+db.klienci.insertOne(
+    {
+      "idKlienta": 100,
+      "nazwisko": "Oplski",
+      "imie": "Kamil",
+      "nrDowodu": "OP9900222",
+      "adresZamieszkania": {
+        "miejscowosc": "Opole",
+        "ulica": "Podkarpacka",
+        "nrDomu": 44,
+        "nrMieszkania": 678
+          }
+      }
+)
+
+```
+
 - insertMany()
 ```sql
 [
-    {item: "card",qty:15},
-    {item: "stamps".qty:30}
+    {
+        item: "card",
+        qty:15
+    },
+    {
+        item: "stamps",
+        qty:30
+    }
 ]
 ```
 - bulkWrite()
@@ -53,7 +77,7 @@ db.collection.update({"carrer.fee":{$lte:5}},{$set:{price:9.99 }})
 - updateMany
 until all values matching the conditon left
 ```sql
-.updateMany({violations:{$gt:3}},{$set:{"Review":true}})
+db.collection.updateMany({violations:{$gt:3}},{$set:{"Review":true}})
 ```
 
 
@@ -61,6 +85,9 @@ Remove
 
 - remove - outdated
 - deleteOne()
+```sql
+db.collection.deleteMany({constraints})
+```
 - deleteMany()
 - findOneAndDelete()
 - bulkWrite()
@@ -243,4 +270,13 @@ updating specific records
 counting elements in db or result
 ```sql
 db.collection.count()
+```
+
+
+### Creating collections
+```sql
+db.createCollection("collection name")
+```
+```sql
+db.collectionName.insertOne()
 ```
