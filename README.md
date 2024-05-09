@@ -1,12 +1,12 @@
-# mariaDB-playground
+# mongoDB-playground
 
-## Wht is mariaDB?
+## What is mongoDB?
 
-Unrelational, nosql database which means ACID rule (Atimicy,Consistency,Isolation,Durability) is no ... 
+MongoDB is a non-relational, NoSQL database, which means it does not strictly adhere to the ACID rule (Atomicity, Consistency, Isolation, Durability) in the same way as traditional relational databases.
 
-Priority in returnig data, not the structure.  Speed, integrative with programming languages, document oriented
+Its primary focus is on retrieving data efficiently, prioritizing speed and flexibility over rigid structural constraints. MongoDB is highly integrative with various programming languages and follows a document-oriented approach to data storage.
 
-Data are stored in collections field:value in JSON format
+Data in MongoDB are organized into collections, where each document consists of field-value pairs in JSON format.
 
 ## Syntax
 
